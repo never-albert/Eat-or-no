@@ -1,6 +1,5 @@
 import random
 
-
 yes = ["да", "yes", "y", "д", "принял","accept", "ага", "yeah","угу"]
 
 
@@ -24,10 +23,17 @@ def load_mod(mod_name):
 def random_product(product = products, chances= products_weights):
     return random.choices(product, weights=chances)[0]
 
+
+def end_game():
+    lives = 3
+
 def menu():
     global lives
     global live_symbol
     global coins
+    global products
+    global products_weights
+    global products_value
     while True:
         print("""
     1. Магазин
@@ -55,6 +61,7 @@ def main():
     global live_symbol
     global coins
     while True:
+        if lives == 0: end_game()
         print(f"""
         Съешь ли ты случайную еду, она может быть как хорошой так и плохой?
         Жизни: {live_symbol*lives}    Монеты: {coins}
@@ -85,12 +92,5 @@ def main():
                     Блюдо, которое ты не съел '{product}'
                     Жизни: {live_symbol*lives} Монеты: {coins}
                     """)
-                
-            
-
-
-
-
-    
 if __name__ == "__main__":
     main()
